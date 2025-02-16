@@ -1,4 +1,4 @@
-module tn.esprit.pitest22 {
+module org.example.pitest {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -8,10 +8,10 @@ module tn.esprit.pitest22 {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
+    //requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
 
-    opens tn.esprit.pitest22 to javafx.fxml;
-    exports tn.esprit.pitest22;
+    opens org.example.pitest to javafx.fxml;
+    exports org.example.pitest;
 }
