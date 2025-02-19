@@ -96,6 +96,30 @@ public Moyen_De_Transport testMoyenDeTransportByEventId(int eventId, int current
     }
     return null;
 }
+
+    public List<Moyen_De_Transport> getAllMoyenDeTransportsByEventId(int eventId) throws SQLException {
+        List<Moyen_De_Transport> moyenDeTransports = new ArrayList<>();
+        String query = "SELECT * FROM moyen_de_transport WHERE evenementId = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, eventId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Moyen_De_Transport moyenDeTransport = new Moyen_De_Transport();
+                    moyenDeTransport.setId(resultSet.getInt("id"));
+                    moyenDeTransport.setEvenementId(resultSet.getInt("evenementId"));
+                    moyenDeTransport.setPrix(resultSet.getInt("prix"));
+                    moyenDeTransport.setType(resultSet.getString("type"));
+                    moyenDeTransport.setnbrePlaces(resultSet.getInt("nbrePlaces"));
+
+                    moyenDeTransports.add(moyenDeTransport);
+                }
+            }
+        }
+
+        return moyenDeTransports;
+    }
 /*public boolean ticketExistsForEvent(int eventId) throws SQLException {
     String query = "SELECT * FROM ticket WHERE evenement_id = ?";
     PreparedStatement preparedStatement = connection.prepareStatement(query);

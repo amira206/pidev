@@ -420,7 +420,6 @@ showListMoyenDeTransport(moyenDeTransports);
     }
 }
 
-
     public void deleteMoyenDeTransport() {
         // Check if a moyenDeTransport is selected
         if (selectedMoyenDeTransport == null) {
@@ -453,7 +452,6 @@ showListMoyenDeTransport(moyenDeTransports);
             }
         }
     }
-
 
     public void clear() {
         moyenDeTransport_evenement.getSelectionModel().clearSelection();
