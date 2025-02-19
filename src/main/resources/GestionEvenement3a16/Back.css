@@ -86,7 +86,7 @@
 
 
 
-#PaneTicket {
+#PaneMoyenDeTransport {
     -fx-background-color: rgb(255, 255, 255);
     -fx-padding: 40px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.16), 5, 0, 0, 5);
@@ -105,7 +105,7 @@
     -fx-transition: scale 0.5s;
 }
 
-#PaneTicket:hover {
+#PaneMoyenDeTransport:hover {
     /* Add your hover styles here */
     -fx-effect: dropshadow(three-pass-box, rgb(146, 138, 191), 10, 0, 0, 10);
     -fx-background-color: rgb(255, 208, 108);
@@ -113,15 +113,15 @@
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
 }
-#PaneTicket:hover #name,
-#PaneTicket:hover #Date,
-#PaneTicket:hover #Prix,
-#PaneTicket:hover #Type,
-#PaneTicket:hover #Nbre_tickets {
+#PaneMoyenDeTransport:hover #name,
+#PaneMoyenDeTransport:hover #Date,
+#PaneMoyenDeTransport:hover #Prix,
+#PaneMoyenDeTransport:hover #Type,
+#PaneMoyenDeTransport:hover #Nbre_tickets {
     -fx-text-fill: white;
 }
 
-#ajouterTicket{
+#ajouterMoyenDeTransport{
     -fx-background-color: #000000; /* Change button background color to black */
     -fx-text-fill: #ffffff;
     -fx-border-radius: 5px;
@@ -129,7 +129,7 @@
     -fx-font-size: 14px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 2);
 }
-#ajouterTicket:hover {
+#ajouterMoyenDeTransport:hover {
     -fx-background-color: #FFA500; /* Change button hover background color to orange */
 }
 

@@ -2,6 +2,7 @@ package GestionEvenement3a16.Entity;
 import com.google.gson.annotations.Expose;
 
 import java.sql.Date;
+import java.util.Collection;
 
 public class Evenement {
     @Expose
@@ -16,6 +17,8 @@ public class Evenement {
     private Date dateEvenement;
     @Expose
     private String imageEvenement;
+    @Expose
+    private Collection<Moyen_De_Transport> moyen_de_transports;
 
     public Evenement() {
     }
@@ -57,9 +60,9 @@ public class Evenement {
         return dateEvenement;
     }
 
-  /*  public Collection<Ticket> getTickets() {
-        return tickets;
-    }*/
+    public Collection<Moyen_De_Transport> getTickets() {
+        return moyen_de_transports;
+    }
 
     public String getImageEvenement() {
         return imageEvenement;

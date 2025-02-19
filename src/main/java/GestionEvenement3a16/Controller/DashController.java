@@ -44,9 +44,9 @@ public void loadTicketLayout() {
     }
 
     @FXML
-    public void loadTicketCards() {
+    public void loadMoyenDeTransportCards() {
         try {
-            AnchorPane evenementLayout = FXMLLoader.load(getClass().getResource("/GestionEvenement3a16/TicketBack.fxml"));
+            AnchorPane evenementLayout = FXMLLoader.load(getClass().getResource("/GestionEvenement3a16/MoyenDeTransportBack.fxml"));
             anchor.getChildren().setAll(evenementLayout);
         } catch (IOException e) {
             e.printStackTrace();

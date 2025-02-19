@@ -42,7 +42,7 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="gestionTicketsButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#loadTicketCards" prefHeight="49.0" prefWidth="262.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Gestion Tickets" textFill="WHITE">
+                  <Button fx:id="gestionTicketsButton" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#loadMoyenDeTransportCards" prefHeight="49.0" prefWidth="262.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Gestion Moyen De Transport" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -123,7 +123,7 @@
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="85.0" layoutY="25.0" prefHeight="34.0" prefWidth="107.0" text="SPORTHUB" textFill="WHITE">
+            <Label layoutX="107.0" layoutY="22.0" prefHeight="34.0" prefWidth="107.0" text="GoMobility" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
