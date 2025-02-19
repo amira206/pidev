@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pitest.Controllers.AjouterReservationController">
+    <children>
+        <Label layoutX="50" layoutY="20" text="Ajouter une Réservation" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+        <Label layoutX="50" layoutY="70" text="ID Utilisateur:" />
+        <TextField fx:id="userIdField" layoutX="150" layoutY="65" prefWidth="200" />
+
+        <Label layoutX="50" layoutY="120" text="Offre:" />
+        <ComboBox fx:id="offreComboBox" layoutX="150" layoutY="115" prefWidth="200" />
+
+        <Label layoutX="50" layoutY="170" text="Prix:" />
+        <TextField fx:id="priceField" layoutX="150" layoutY="165" prefWidth="200" />
+
+        <Button fx:id="addButton" layoutX="150" layoutY="220" text="Ajouter" onAction="#handleAddReservation" />
+    </children>
+</AnchorPane>
+

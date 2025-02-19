@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pitest.Controllers.ParcoursController">
+    <children>
+        <VBox alignment="TOP_CENTER" layoutX="0.0" layoutY="0.0" prefHeight="666.0" prefWidth="753.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <Label text="Gestion des Parcours" textAlignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <TextField fx:id="filterField" prefHeight="30.0" prefWidth="250.0" promptText="Rechercher un parcours...">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#ouvrirAjoutModification" prefHeight="30.0" text="Ajouter un parcours">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                    </padding>
+                </HBox>
+
+                <TableView fx:id="tableau" prefHeight="550.0" prefWidth="723.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="id" minWidth="40.0" prefWidth="40.0" text="ID" />
+                        <TableColumn fx:id="name" minWidth="80.0" prefWidth="100.0" text="Nom" />
+                        <TableColumn fx:id="pickup" minWidth="90.0" prefWidth="100.0" text="Départ" />
+                        <TableColumn fx:id="destination" minWidth="90.0" prefWidth="100.0" text="Destination" />
+                        <TableColumn fx:id="latPickup" minWidth="60.0" prefWidth="60.0" text="Lat Dép" />
+                        <TableColumn fx:id="lngPickup" minWidth="60.0" prefWidth="60.0" text="Lng Dép" />
+                        <TableColumn fx:id="latDest" minWidth="60.0" prefWidth="60.0" text="Lat Dest" />
+                        <TableColumn fx:id="lngDest" minWidth="60.0" prefWidth="60.0" text="Lng Dest" />
+                        <TableColumn fx:id="distance" minWidth="50.0" prefWidth="50.0" text="Dist" />
+                        <TableColumn fx:id="time" minWidth="50.0" prefWidth="50.0" text="Temps" />
+                        <TableColumn fx:id="editColumn" minWidth="60.0" prefWidth="70.0" text="Modifier" />
+                        <TableColumn fx:id="deleteColumn" minWidth="60.0" prefWidth="70.0" text="Supprimer" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

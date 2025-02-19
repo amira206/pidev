@@ -8,10 +8,12 @@ module org.example.pitest {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
-    //requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
 
     opens org.example.pitest to javafx.fxml;
+    opens org.example.pitest.Controllers to javafx.fxml; // ✅ Ajouté pour permettre l'accès via FXMLLoader
+
     exports org.example.pitest;
+    exports org.example.pitest.Controllers; // ✅ Si vous voulez que d'autres modules accèdent au package
 }

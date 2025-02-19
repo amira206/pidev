@@ -1,5 +1,7 @@
 package org.example.pitest.Services;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.example.pitest.Interfaces.IService;
 import org.example.pitest.Model.Parcours;
 import org.example.pitest.Utils.DataSource;
@@ -24,23 +26,31 @@ public class ParcoursService implements IService<Parcours> {
     }
 
     @Override
+
     public void add(Parcours parcours) {
         String query = "INSERT INTO parcours (name, pickup, destination, latDest, lngDest, latPickup, lngPickup, distance, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try (PreparedStatement pst = connexion.prepareStatement(query)) {
-            pst.setString(1, parcours.getName());
-            pst.setString(2, parcours.getPickup());
-            pst.setString(3, parcours.getDestination());
-            pst.setDouble(4, parcours.getLatDest());
-            pst.setDouble(5, parcours.getLngDest());
-            pst.setDouble(6, parcours.getLatPickup());
-            pst.setDouble(7, parcours.getLngPickup());
-            pst.setInt(8, parcours.getDistance());
-            pst.setInt(9, parcours.getTime());
-            pst.executeUpdate();
+            // Set parameters for the query
+            execute_stmnt(parcours, pst);
+
+            // Add debug log to check parameters before execution
+            System.out.println("Inserting parcours: " + parcours);
+
+            // Execute the update (this actually runs the query)
+            int rowsAffected = pst.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Parcours inserted successfully");
+            } else {
+                System.out.println("Failed to insert parcours");
+            }
         } catch (SQLException e) {
+            System.out.println("Error inserting parcours: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void delete(int id) {
@@ -57,20 +67,24 @@ public class ParcoursService implements IService<Parcours> {
     public void update(Parcours parcours, int id) {
         String query = "UPDATE parcours SET name = ?, pickup = ?, destination = ?, latDest = ?, lngDest = ?, latPickup = ?, lngPickup = ?, distance = ?, time = ? WHERE id = ?";
         try (PreparedStatement pst = connexion.prepareStatement(query)) {
-            pst.setString(1, parcours.getName());
-            pst.setString(2, parcours.getPickup());
-            pst.setString(3, parcours.getDestination());
-            pst.setDouble(4, parcours.getLatDest());
-            pst.setDouble(5, parcours.getLngDest());
-            pst.setDouble(6, parcours.getLatPickup());
-            pst.setDouble(7, parcours.getLngPickup());
-            pst.setInt(8, parcours.getDistance());
-            pst.setInt(9, parcours.getTime());
+            execute_stmnt(parcours, pst);
             pst.setInt(10, id);
             pst.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void execute_stmnt(Parcours parcours, PreparedStatement pst) throws SQLException {
+        pst.setString(1, parcours.getName());
+        pst.setString(2, parcours.getPickup());
+        pst.setString(3, parcours.getDestination());
+        pst.setDouble(4, parcours.getLatDest());
+        pst.setDouble(5, parcours.getLngDest());
+        pst.setDouble(6, parcours.getLatPickup());
+        pst.setDouble(7, parcours.getLngPickup());
+        pst.setInt(8, parcours.getDistance());
+        pst.setInt(9, parcours.getTime());
     }
 
     @Override
@@ -123,4 +137,6 @@ public class ParcoursService implements IService<Parcours> {
         }
         return parcoursList;
     }
+
+
 }

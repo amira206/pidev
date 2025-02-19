@@ -30,7 +30,7 @@ public class ReservationService implements IService<Reservation> {
 
     @Override
     public void add(Reservation reservation) {
-        String req = "INSERT INTO reservations (user_id, offre_id, price) VALUES (?, ?, ?)";
+        String req = "INSERT INTO reservation (user_id, offre_id, price) VALUES (?, ?, ?)";
         try (PreparedStatement pst = connexion.prepareStatement(req)) {
             pst.setInt(1, reservation.getUser().getId());
             pst.setInt(2, reservation.getOffre().getId());
@@ -44,7 +44,7 @@ public class ReservationService implements IService<Reservation> {
 
     @Override
     public void delete(int id) {
-        String req = "DELETE FROM reservations WHERE id = ?";
+        String req = "DELETE FROM reservation WHERE id = ?";
         try (PreparedStatement pst = connexion.prepareStatement(req)) {
             pst.setInt(1, id);
             int rowsDeleted = pst.executeUpdate();
@@ -60,7 +60,7 @@ public class ReservationService implements IService<Reservation> {
 
     @Override
     public void update(Reservation reservation, int id) {
-        String req = "UPDATE reservations SET user_id = ?, offre_id = ?, price = ? WHERE id = ?";
+        String req = "UPDATE reservation SET user_id = ?, offre_id = ?, price = ? WHERE id = ?";
         try (PreparedStatement pst = connexion.prepareStatement(req)) {
             pst.setInt(1, reservation.getUser().getId());
             pst.setInt(2, reservation.getOffre().getId());
@@ -79,7 +79,7 @@ public class ReservationService implements IService<Reservation> {
 
     @Override
     public Reservation find(int id) {
-        String req = "SELECT * FROM reservations WHERE id = ?";
+        String req = "SELECT * FROM reservation WHERE id = ?";
         try (PreparedStatement pst = connexion.prepareStatement(req)) {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();
@@ -96,7 +96,7 @@ public class ReservationService implements IService<Reservation> {
     @Override
     public List<Reservation> findAll() {
         List<Reservation> reservations = new ArrayList<>();
-        String req = "SELECT * FROM reservations";
+        String req = "SELECT * FROM reservation";
         try (Statement st = connexion.createStatement();
              ResultSet rs = st.executeQuery(req)) {
 
