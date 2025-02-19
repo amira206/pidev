@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane prefHeight="666.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pitest.Controllers.OffreController">
+<AnchorPane prefHeight="666.0" prefWidth="753.0" stylesheets="@styles.css"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.pitest.Controllers.OffreController">
 
     <children>
-        <TableView fx:id="tableau" layoutX="-18.0" layoutY="175.0" prefHeight="395.0" prefWidth="779.0">
-            <columns>
-                <TableColumn fx:id="idtv" prefWidth="75.0" text="ID" />
-                <TableColumn fx:id="nbplacestv" prefWidth="100.0" text="Nb Places" />
-                <TableColumn fx:id="usertv" prefWidth="100.0" text="Utilisateur" />
-                <TableColumn fx:id="prixtv" prefWidth="75.0" text="Prix (€)" />
-                <TableColumn fx:id="parcourstv" prefWidth="100.0" text="Parcours" />
-                <TableColumn fx:id="datetv" prefWidth="100.0" text="Date" />
-                <TableColumn fx:id="bagagetv" prefWidth="75.0" text="Bagage" />
-                <TableColumn fx:id="deleteColumn" prefWidth="75.0" text="Supprimer" />
-                <TableColumn fx:id="editColumn" prefWidth="71.0" text="Modifier" />
-            </columns>
-        </TableView>
+        <VBox spacing="10" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
 
-        <TextField fx:id="filterField" layoutX="21.0" layoutY="106.0" promptText="Rechercher..." />
-        <Button layoutX="281.0" layoutY="122.0" mnemonicParsing="false" onAction="#ExporterExcel" text="Exporter Excel" />
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets bottom="10"/>
+                </padding>
+                <TextField fx:id="filterField" promptText="Rechercher..." prefWidth="200"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button styleClass="button-primary" onAction="#handleAddOffre" text="Ajouter une offre"/>
+                <Button styleClass="button-secondary" onAction="#ExporterExcel" text="Exporter Excel"/>
+            </HBox>
 
+            <TableView fx:id="tableau" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idtv" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="nbplacestv" text="Nb Places" prefWidth="80"/>
+                    <TableColumn fx:id="usertv" text="Utilisateur" prefWidth="100"/>
+                    <TableColumn fx:id="prixtv" text="Prix (€)" prefWidth="80"/>
+                    <TableColumn fx:id="parcourstv" text="Parcours" prefWidth="120"/>
+                    <TableColumn fx:id="datetv" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="bagagetv" text="Bagage" prefWidth="70"/>
+                    <TableColumn fx:id="editColumn" text="Modifier" prefWidth="80"/>
+                    <TableColumn fx:id="deleteColumn" text="Supprimer" prefWidth="80"/>
+                </columns>
+            </TableView>
+        </VBox>
     </children>
-
 </AnchorPane>

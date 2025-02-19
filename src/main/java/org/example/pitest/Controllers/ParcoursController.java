@@ -84,10 +84,6 @@ public class ParcoursController {
             }
         });
 
-        // Similar formatting for other double columns
-        // ... (same cell factories for other double columns)
-
-        // Delete button column
         deleteColumn.setCellFactory(param -> new TableCell<>() {
             private final Button deleteButton = new Button("Supprimer");
 
