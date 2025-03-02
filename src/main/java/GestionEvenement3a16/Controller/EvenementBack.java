@@ -5,6 +5,7 @@ import GestionEvenement3a16.Services.EvenementService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -99,60 +101,123 @@ public class EvenementBack {
         });
         try {
             List<Evenement> events = evenementService.getAllEvents();
-            displayEvents(events);        }
-        catch (SQLException | IOException e) {
+            displayEvents(events);        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
 
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                searchEvents();
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+
+
+        sortComboBox.getItems().addAll("Sort by Name", "Sort by Lieu");
+        sortComboBox.setPromptText("Sort");
+
+        sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue) {
+                case "Sort by Name":
+                    try {
+                        sortEventsByName();
+                    } catch (SQLException | IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+                case "Sort by Lieu":
+                    try {
+                        sortEventsByLieu();
+                    } catch (SQLException | IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    break;
+            }
+        });
 
 
     }
 
+    @FXML
+    private void sortEventsByName() throws SQLException, IOException {
+        List<Evenement> events = evenementService.getAllEvents();
+        events.sort(Comparator.comparing(Evenement::getNom)); // Sort events by name
+        displayEvents(events);
+    }
 
+    @FXML
+    private void sortEventsByLieu() throws SQLException, IOException {
+        List<Evenement> events = evenementService.getAllEvents();
+        events.sort(Comparator.comparing(Evenement::getLieu)); // Sort events by lieu
+        displayEvents(events);
+    }
 
-
-private void displayEvents(List<Evenement> events) throws SQLException, IOException {
-    int totalItems = events.size(); // Get the total number of items
-
-        GridPane gridPane = new GridPane(); // Create a new GridPane
-        gridPane.setHgap(10); // Set horizontal gap
-        gridPane.setVgap(10); // Set vertical gap
-
-        for (int i = 0; i < totalItems; i++) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/GestionEvenement3a16/EvenementCard.fxml"));
-                Pane pane = fxmlLoader.load();
-
-                EvenementCard controller = fxmlLoader.getController();
-                controller.setData(events.get(i));
-
-                pane.setOnMouseClicked(e -> {
-                    try {
-                        openDetails(controller.getEvent());
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-                });
-
-                gridPane.add(pane, i % 2, i / 2); // Add the event to the GridPane
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    @FXML
+    private void searchEvents() throws SQLException, IOException {
+        String searchTerm = searchField.getText();
+        List<Evenement> events = evenementService.searchEvents(searchTerm);
+        eventContainerBack.getChildren().clear(); // Clear the GridPane
+        if (events.isEmpty()) {
+            Label label = new Label("Aucun événement ne correspond à votre recherche");
+            label.getStyleClass().add("error-message"); // Add a style class to style the error message
+            eventContainerBack.add(label, 0, 0);
+        } else {
+            displayEvents(events);
         }
+    }
 
-        // Remove all children of the eventContainerBack GridPane that are not the pagination control
-       // eventContainerBack.getChildren().removeIf(node -> node != pagination);
+    private void displayEvents(List<Evenement> events) throws SQLException, IOException {
+        int itemsPerPage = 4; // Set the number of items per page
+        int totalItems = events.size(); // Get the total number of items
+        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage); // Calculate the total number of pages
 
-        // Add the created GridPane to the eventContainerBack GridPane
-        eventContainerBack.getChildren().add(0, gridPane); // Add the gridPane at the first position
+        pagination.setPageCount(totalPages); // Set the total number of pages
 
-         // Return the GridPane wrapped in a ScrollPane as the page content
+        pagination.setPageFactory((pageIndex) -> {
+            int fromIndex = pageIndex * itemsPerPage; // Calculate the index of the first item on the current page
+            int toIndex = Math.min(fromIndex + itemsPerPage, totalItems); // Calculate the index of the last item on the current page
 
-}
+            GridPane gridPane = new GridPane(); // Create a new GridPane
+            gridPane.setHgap(10); // Set horizontal gap
+            gridPane.setVgap(10); // Set vertical gap
+
+            for (int i = fromIndex; i < toIndex; i++) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/GestionEvenement3a16/EvenementCard.fxml"));
+                    Pane pane = fxmlLoader.load();
+
+                    EvenementCard controller = fxmlLoader.getController();
+                    controller.setData(events.get(i));
+
+                    pane.setOnMouseClicked(e -> {
+                        try {
+                            openDetails(controller.getEvent());
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+
+                    gridPane.add(pane, i % 2, i / 2); // Add the event to the GridPane
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            // Remove all children of the eventContainerBack GridPane that are not the pagination control
+            eventContainerBack.getChildren().removeIf(node -> node != pagination);
+
+            // Add the created GridPane to the eventContainerBack GridPane
+            eventContainerBack.getChildren().add(0, gridPane); // Add the gridPane at the first position
+
+            return new ScrollPane(gridPane); // Return the GridPane wrapped in a ScrollPane as the page content
+        });
+    }
 
 
-public void eventAdd() {
+    public void eventAdd() {
         try {
             Alert alert;
 
