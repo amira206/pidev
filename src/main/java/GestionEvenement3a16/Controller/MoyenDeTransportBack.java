@@ -144,61 +144,9 @@ public class MoyenDeTransportBack {
             showListMoyenDeTransport(moyenDeTransports);
         }
 
-        // Add sorting options to the sortComboBox
-sortComboBox.getItems().addAll("Sort by Price", "Sort by Event Name");
-        sortComboBox.setPromptText("Sort");
-// Add a listener to the sortComboBox
-        sortComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            try {
-switch ((String) newValue) {
-    case "Sort by Price":
-        sortMoyenDeTransportsByPrice();
-        break;
-    case "Sort by Event Name":
-        sortMoyenDeTransportsByEventName();
-        break;
-}
-            } catch (SQLException | IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+
     }
 
-
-    private void sortMoyenDeTransportsByPrice() throws SQLException, IOException {
-        List<Moyen_De_Transport> moyenDeTransports = moyenDeTransportService.getAllMoyenDeTransports();
-        moyenDeTransports.sort(Comparator.comparing(Moyen_De_Transport::getPrix)); // Sort moyenDeTransports by price
-        showListMoyenDeTransport(moyenDeTransports);
-    }
-
-    private void sortMoyenDeTransportsByEventName() throws SQLException, IOException {
-        List<Moyen_De_Transport> moyenDeTransports = moyenDeTransportService.getAllMoyenDeTransports();
-        // Sort moyenDeTransports by event name
-        moyenDeTransports.sort(Comparator.comparing(moyenDeTransport -> {
-            try {
-                return evenementService.getEventById(moyenDeTransport.getEvenementId()).getNom();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }));
-        showListMoyenDeTransport(moyenDeTransports);
-    }
-/*
-@FXML
-private void searchMoyenDeTransportsByEventName() throws SQLException, IOException {
-    String searchTerm = searchField.getText();
-    List<Moyen_De_Transport> moyenDeTransports = moyenDeTransportService.searchMoyenDeTransportsByEventName(searchTerm);
-    moyenDeTransportContainerBack.getChildren().clear(); // Clear the GridPane
-    if (moyenDeTransports.isEmpty()) {
-        Label label = new Label("Aucun moyenDeTransport ne correspond à votre recherche");
-        label.getStyleClass().add("error-message"); // Add a style class to style the error message
-        moyenDeTransportContainerBack.add(label, 0, 0);
-    } else {
-        showListMoyenDeTransport(moyenDeTransports);
-    }
-}
-*/
 private void loadEvents() {
         try {
             List<String> eventNames = evenementService.getAllEventNames();
@@ -292,7 +240,6 @@ public void addMoyenDeTransport1() {
                 alert.setContentText("Successfully Added!");
                 alert.showAndWait();
 
-                // Refresh the table view
                List<Moyen_De_Transport> moyenDeTransports = moyenDeTransportService.getAllMoyenDeTransports();
 showListMoyenDeTransport(moyenDeTransports);
 

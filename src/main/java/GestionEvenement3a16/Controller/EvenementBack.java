@@ -99,7 +99,8 @@ public class EvenementBack {
         });
         try {
             List<Evenement> events = evenementService.getAllEvents();
-            displayEvents(events);        } catch (SQLException | IOException e) {
+            displayEvents(events);        }
+        catch (SQLException | IOException e) {
             e.printStackTrace();
         }
 
@@ -107,33 +108,8 @@ public class EvenementBack {
 
     }
 
-    @FXML
-    private void sortEventsByName() throws SQLException, IOException {
-        List<Evenement> events = evenementService.getAllEvents();
-        events.sort(Comparator.comparing(Evenement::getNom)); // Sort events by name
-        displayEvents(events);
-    }
 
-    @FXML
-    private void sortEventsByLieu() throws SQLException, IOException {
-        List<Evenement> events = evenementService.getAllEvents();
-        events.sort(Comparator.comparing(Evenement::getLieu)); // Sort events by lieu
-        displayEvents(events);
-    }
 
-@FXML
-private void searchEvents() throws SQLException, IOException {
-    String searchTerm = searchField.getText();
-    List<Evenement> events = evenementService.searchEvents(searchTerm);
-    eventContainerBack.getChildren().clear(); // Clear the GridPane
-    if (events.isEmpty()) {
-        Label label = new Label("Aucun événement ne correspond à votre recherche");
-        label.getStyleClass().add("error-message"); // Add a style class to style the error message
-        eventContainerBack.add(label, 0, 0);
-    } else {
-        displayEvents(events);
-    }
-}
 
 private void displayEvents(List<Evenement> events) throws SQLException, IOException {
     int totalItems = events.size(); // Get the total number of items
@@ -166,7 +142,7 @@ private void displayEvents(List<Evenement> events) throws SQLException, IOExcept
         }
 
         // Remove all children of the eventContainerBack GridPane that are not the pagination control
-        eventContainerBack.getChildren().removeIf(node -> node != pagination);
+       // eventContainerBack.getChildren().removeIf(node -> node != pagination);
 
         // Add the created GridPane to the eventContainerBack GridPane
         eventContainerBack.getChildren().add(0, gridPane); // Add the gridPane at the first position

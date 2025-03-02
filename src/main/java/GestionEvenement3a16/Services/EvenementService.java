@@ -33,20 +33,52 @@ public class EvenementService {
         preparedStatement.executeUpdate();
     }
 
-    public void deleteEvent(int id) throws SQLException {
-        // First, delete the tickets related to the event
-    /*    String deleteTicketsQuery = "DELETE FROM ticket WHERE evenement_id = ?";
-        PreparedStatement deleteTicketsStmt = connection.prepareStatement(deleteTicketsQuery);
-        deleteTicketsStmt.setInt(1, id);
-        deleteTicketsStmt.executeUpdate();*/
+public void deleteEvent(int id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement deleteTransportStmt = null;
+        PreparedStatement deleteEventStmt = null;
 
-        // Then, delete the event
-        String deleteEventQuery = "DELETE FROM evenement WHERE id = ?";
-        PreparedStatement deleteEventStmt = connection.prepareStatement(deleteEventQuery);
-        deleteEventStmt.setInt(1, id);
-        deleteEventStmt.executeUpdate();
+        try {
+            connection = ConnectionSql.getInstance().getConnection();
+            // Start transaction
+            connection.setAutoCommit(false);
+
+            // First, delete all means of transport related to the event
+            String deleteTransportQuery = "DELETE FROM moyen_de_transport WHERE evenementId = ?";
+            deleteTransportStmt = connection.prepareStatement(deleteTransportQuery);
+            deleteTransportStmt.setInt(1, id);
+            int transportDeleted = deleteTransportStmt.executeUpdate();
+            System.out.println("Deleted " + transportDeleted + " means of transport");
+
+            // Then, delete the event
+            String deleteEventQuery = "DELETE FROM evenement WHERE id = ?";
+            deleteEventStmt = connection.prepareStatement(deleteEventQuery);
+            deleteEventStmt.setInt(1, id);
+            int eventDeleted = deleteEventStmt.executeUpdate();
+            System.out.println("Deleted event: " + (eventDeleted > 0));
+
+            // Commit the transaction
+            connection.commit();
+        } catch (SQLException e) {
+            // Rollback in case of error
+            if (connection != null) {
+                connection.rollback();
+            }
+            throw e;
+        } finally {
+            // Reset auto-commit to true
+            if (connection != null) {
+                connection.setAutoCommit(true);
+            }
+            // Close statements
+            if (deleteTransportStmt != null) {
+                deleteTransportStmt.close();
+            }
+            if (deleteEventStmt != null) {
+                deleteEventStmt.close();
+            }
+        }
     }
-
 /*
     public void updateEvent(int id, String nom, String description, String lieu, Date date_evenement, String image_evenement) throws SQLException {
         String query = "UPDATE evenement SET nom = ?, description = ?, lieu = ?, date_evenement = ?, image_evenement = ? WHERE id = ?";
