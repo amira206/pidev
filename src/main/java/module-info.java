@@ -6,6 +6,7 @@ module com.example.gestionevenement3a16 {
     requires java.desktop;
     requires javafx.graphics;
     requires com.google.gson;
+    requires unirest.java;
 
     opens GestionEvenement3a16.Entity to com.google.gson;
 

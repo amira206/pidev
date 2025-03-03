@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import kong.unirest.json.JSONObject;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -26,10 +27,12 @@ public class EvenementFront {
 
     @FXML
     private ScrollPane most_popular_events;
+    private WeatherService weatherService;
 
 
 public void initialize() {
     try {
+        weatherService = new WeatherService();
 
         List<Evenement> events = fetchEventsFromDatabase();
 
@@ -67,6 +70,24 @@ public GridPane createEventCard(Evenement event) {
     eventCard.getStyleClass().add("card"); // Add the style class
 
     eventCard.setVgap(10); // Set the amount of vertical space you want
+    WeatherService weatherService = new WeatherService();
+    JSONObject weatherData = weatherService.getWeatherByCity(event.getLieu());
+
+    String weatherInfo = "Weather data could not be retrieved.";
+    if (weatherData != null) {
+        // Extract the weather information from the JSON object
+        String weatherDescription = weatherData.getJSONArray("weather").getJSONObject(0).getString("description");
+        double temperatureInKelvin = weatherData.getJSONObject("main").getDouble("temp");
+
+        // Convert the temperature to Celsius
+        double temperatureInCelsius = temperatureInKelvin - 273.15;
+
+        weatherInfo = " " + weatherDescription + ",  " + String.format("%.2f", temperatureInCelsius) + "°C";
+    }
+
+    Label weatherLabel = new Label(weatherInfo);
+    eventCard.add(weatherLabel, 0, 3); // Add the weather label to the top of the card
+
 
     // Create an ImageView and load the image from the file path
     ImageView eventImage = new ImageView();
@@ -103,6 +124,26 @@ public GridPane createEventCard(Evenement event) {
     private GridPane createDetailedCard(Evenement event) {
         GridPane detailedCard = new GridPane();
         detailedCard.getStyleClass().add("detailed-card"); // Add the style class
+
+
+        // Fetch the weather data for the city
+        WeatherService weatherService = new WeatherService();
+        JSONObject weatherData = weatherService.getWeatherByCity(event.getLieu());
+
+        String weatherInfo = "Weather data could not be retrieved.";
+        if (weatherData != null) {
+            // Extract the weather information from the JSON object
+            String weatherDescription = weatherData.getJSONArray("weather").getJSONObject(0).getString("description");
+            double temperatureInKelvin = weatherData.getJSONObject("main").getDouble("temp");
+
+            // Convert the temperature to Celsius
+            double temperatureInCelsius = temperatureInKelvin - 273.15;
+
+            weatherInfo = "Weather: " + weatherDescription + ", " + String.format("%.2f", temperatureInCelsius) + "°C";
+        }
+
+        Label weatherLabel = new Label(weatherInfo);
+        detailedCard.add(weatherLabel, 0, 5); // Add the weather label to the card
 
 
 
@@ -151,6 +192,7 @@ eventDescription.setWrapText(true); // Enable text wrapping
             GridPane ticketCard = null;
             try {
                 ticketCard = createTicketCard(event);
+                ticketCard.setPrefSize(600, 800);
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
             }
@@ -291,7 +333,9 @@ public GridPane createTicketCard(Evenement event) throws SQLException {
         mainContainer.add(scrollPane, 0, 1);
 
         return mainContainer;
-    }public void decreaseTicketQuantity(Moyen_De_Transport moyenDeTransport) {
+    }
+
+    public void decreaseTicketQuantity(Moyen_De_Transport moyenDeTransport) {
     MoyenDeTransportService ticketService = new MoyenDeTransportService();
     try {
         if (moyenDeTransport != null && moyenDeTransport.getnbrePlaces() > 0) {
