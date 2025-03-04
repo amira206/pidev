@@ -2,6 +2,7 @@ package GestionEvenement3a16.Controller;
 
 import GestionEvenement3a16.Entity.Evenement;
 import GestionEvenement3a16.Entity.Moyen_De_Transport;
+import GestionEvenement3a16.Entity.User;
 import GestionEvenement3a16.Services.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,12 +29,12 @@ public class EvenementFront {
     @FXML
     private ScrollPane most_popular_events;
     private WeatherService weatherService;
-
+private UserService userService;
 
 public void initialize() {
     try {
         weatherService = new WeatherService();
-
+      userService = new UserService();
         List<Evenement> events = fetchEventsFromDatabase();
 
         int column = 0;
@@ -197,7 +198,7 @@ eventDescription.setWrapText(true); // Enable text wrapping
                 sqlException.printStackTrace();
             }
             //eventContainer.getChildren().clear(); // Clear the event container
-            eventContainer.add(ticketCard, 2, 0); // Add the ticket card to the event container
+            eventContainer.add(ticketCard, 1, 0); // Add the ticket card to the event container
         });
         detailedCard.add(getTicketButton, 0, 8); // Add the button to the detailed card
 
@@ -320,6 +321,80 @@ public GridPane createTicketCard(Evenement event) throws SQLException {
                 GridPane.setHalignment(ticketQuantity, javafx.geometry.HPos.CENTER);
 
                 ticketsContainer.add(ticketCard, 0, row++);
+                Button participateButton = new Button("PARTICIPATE");
+                participateButton.setOnAction(e -> {
+                    // Decrease the ticket quantity by one
+
+                    User user= null;
+                    try {
+                        user = userService.getById(2);
+
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                    int userId = user.getId();
+
+
+                    // Register the user for the ticket
+                    int ticketId = ticket.getId();
+                    //String userId = getCurrentUrseId();
+                    // Assuming the user ID is "1" for testing purposes
+                    String to = "+21628913441";  // Replace with the phone number of the user
+                    String from = "+14194929057";  // Replace with your Twilio number
+                    String bodEventy = "Vous avez participer à  " + event.getNom() + "\n"+ "\n"
+                            + " Date: " + event.getDateEvenement().toString() + "\n"
+                            + "Ticket Type: " + ticket.getType() + "\n"
+                            + "Ticket Price: " + ticket.getPrix() + " DT" + "\n" ;
+                    //twilioService.sendSms(to, from, body);
+
+try {
+    moyenDeTransportService.registerUserMoy(ticketId, userId);
+    ticket.setnbrePlaces(ticket.getnbrePlaces() - 1);
+    // Confirmation alert for successful registration
+    javafx.scene.control.Alert confirmationAlert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+    confirmationAlert.setTitle("Registration Successful");
+    confirmationAlert.setHeaderText(null);
+    confirmationAlert.setContentText("Your registration was successfully completed.");
+    confirmationAlert.showAndWait();
+} catch (SQLException sqlException) {
+    if (sqlException.getMessage().contains("Duplicate entry")) {
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
+        alert.setTitle("Duplicate Entry Error");
+        alert.setHeaderText(null);
+        alert.setContentText("You have already registered for this ticket.");
+        alert.showAndWait();
+    }
+}
+                    // Extract the parameters from the Ticket object
+                    int id = ticket.getId();
+                    Integer evenement_id = ticket.getEvenementId();
+                    Integer prix = ticket.getPrix();
+                    String type = ticket.getType();
+                    Integer nbre_ticket = ticket.getnbrePlaces();
+
+                    // Update the ticket in the database
+                    try {
+                        moyenDeTransportService.updateMoyenDeTransport(id, evenement_id, prix, type,nbre_ticket);
+                    } catch (SQLException sqlException) {
+                        sqlException.printStackTrace();
+                    }
+                    // Refresh the ticket card
+                    eventContainer.getChildren().remove(ticketCard);
+                    try {
+                        GridPane newTicketCard = createTicketCard(event);
+                        eventContainer.add(newTicketCard, 1, 0);
+                    } catch (SQLException sqlException) {
+                        sqlException.printStackTrace();
+                    }
+
+
+
+
+
+                });
+                ticketCard.add(participateButton, 0, 5);
+
             }
         }
 

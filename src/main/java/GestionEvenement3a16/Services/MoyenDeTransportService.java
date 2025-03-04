@@ -120,7 +120,7 @@ public Moyen_De_Transport testMoyenDeTransportByEventId(int eventId, int current
 
         return moyenDeTransports;
     }
-/*public boolean ticketExistsForEvent(int eventId) throws SQLException {
+public boolean ticketExistsForEvent(int eventId) throws SQLException {
     String query = "SELECT * FROM ticket WHERE evenement_id = ?";
     PreparedStatement preparedStatement = connection.prepareStatement(query);
     preparedStatement.setInt(1, eventId);
@@ -130,34 +130,34 @@ public Moyen_De_Transport testMoyenDeTransportByEventId(int eventId, int current
 
 
 
-public void registerUserTicket(int ticketId, String userId) throws SQLException {
-    String query = "INSERT INTO ticket_user (ticket_id, user_id) VALUES (?, ?)";
+public void registerUserMoy(int Moy_Id, int user_Id) throws SQLException {
+    String query = "INSERT INTO moyen_de_transport_user (moyen_de_transport_id , user_id) VALUES (?, ?)";
     PreparedStatement preparedStatement = connection.prepareStatement(query);
-    preparedStatement.setInt(1, ticketId);
-    preparedStatement.setString(2, userId);
+    preparedStatement.setInt(1, Moy_Id);
+    preparedStatement.setInt(2, user_Id);
     preparedStatement.executeUpdate();
 }
 
 
-public List<Ticket> getUserTickets(String userId) throws SQLException {
-    List<Ticket> tickets = new ArrayList<>();
-    String query = "SELECT * FROM ticket_user JOIN ticket ON ticket_user.ticket_id = ticket.id WHERE user_id = ?";
+public List<Moyen_De_Transport> getUserMoy(int userId) throws SQLException {
+    List<Moyen_De_Transport> MoyDeTransports = new ArrayList<>();
+    String query = "SELECT * FROM moyen_de_transport_user  JOIN moyen_de_transport ON moyen_de_transport_user.moyen_de_transport_id = moyen_de_transport.id WHERE user_id = ?";
     PreparedStatement preparedStatement = connection.prepareStatement(query);
-    preparedStatement.setString(1, userId);
+    preparedStatement.setInt(1, userId);
     ResultSet resultSet = preparedStatement.executeQuery();
     while (resultSet.next()) {
-        Ticket ticket = new Ticket();
-        ticket.setId(resultSet.getInt("id"));
-        ticket.setEvenementId(resultSet.getInt("evenement_id"));
-        ticket.setPrix(resultSet.getInt("prix"));
-        ticket.setType(resultSet.getString("type"));
-        ticket.setNbreTicket(resultSet.getInt("nbre_ticket"));
-        tickets.add(ticket);
+        Moyen_De_Transport moyenDeTransport = new Moyen_De_Transport();
+        moyenDeTransport.setId(resultSet.getInt("id"));
+        moyenDeTransport.setEvenementId(resultSet.getInt("evenementId"));
+        moyenDeTransport.setPrix(resultSet.getInt("prix"));
+        moyenDeTransport.setType(resultSet.getString("type"));
+        moyenDeTransport.setnbrePlaces(resultSet.getInt("nbrePlaces"));
+        MoyDeTransports.add(moyenDeTransport);
     }
-    return tickets;
+    return MoyDeTransports;
 }
 
-
+/*
 public List<Evenement> getMostPopularEvents() throws SQLException {
     // Create a Statement object
     Statement statement = connection.createStatement();

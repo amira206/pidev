@@ -1,5 +1,7 @@
 package GestionEvenement3a16.Entity;
 
+import java.util.Collection;
+
 public class Moyen_De_Transport {
     private Integer id;
     private Integer prix;
@@ -7,7 +9,7 @@ public class Moyen_De_Transport {
     private Integer nbrePlaces;
 
     private Integer evenementId;
-    //private Collection<User> users;
+    private Collection<User> users;
 
     public Moyen_De_Transport() {
     }
@@ -67,13 +69,13 @@ public class Moyen_De_Transport {
         this.evenementId = evenementId;
     }
 
-    // public Collection<User> getUsers() {
-    //     return users;
-    // }
+     public Collection<User> getUsers() {
+         return users;
+     }
 
-    // public void setUsers(Collection<User> users) {
-    //     this.users = users;
-    // }
+     public void setUsers(Collection<User> users) {
+         this.users = users;
+     }
 
 
     @Override
