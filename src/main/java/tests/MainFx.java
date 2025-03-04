@@ -17,10 +17,10 @@ public class MainFx extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Sign.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListReduc.fxml"));
             Parent root = loader.load();
             Scene sc = new Scene(root);
-            stage.setTitle("login");
+            stage.setTitle("Afficher Reduction");
             stage.setScene(sc);
             stage.show();
         }catch (IOException e){

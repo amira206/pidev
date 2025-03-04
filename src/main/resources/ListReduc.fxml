@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ListReduc">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="166.0" layoutY="75.0" text="Liste des reductions ">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="98.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/LOGO-removebg-preview%20(1).png" />
+               </image>
+            </ImageView>
+            <TableView fx:id="tableView" layoutX="122.0" layoutY="126.0" prefHeight="189.0" prefWidth="346.0">
+              <columns>
+                <TableColumn fx:id="userIdL" prefWidth="75.0" text="User ID" />
+                <TableColumn fx:id="reductionL" prefWidth="90.39996337890625" text="\% Reduction" />
+                  <TableColumn fx:id="ValableL" prefWidth="104.7999267578125" text="Valable jusqu'à " />
+                  <TableColumn fx:id="statutL" prefWidth="75.0" text="Statut" />
+              </columns>
+            </TableView>
+            <Button layoutX="353.0" layoutY="332.0" mnemonicParsing="false" onAction="#modifierRedu" style="-fx-background-radius: 50;" styleClass="button-design" stylesheets="@design.css" text="Modifier" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="455.0" layoutY="332.0" mnemonicParsing="false" onAction="#supprimerRedu" style="-fx-background-radius: 50;" styleClass="button-design" stylesheets="@design.css" text="Supprimer" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="462.0" layoutY="86.0" mnemonicParsing="false" onAction="#actualiser" styleClass="button-design" stylesheets="@design.css" text="Actualiser" textFill="WHITE" />
+            <TextField fx:id="recherche" layoutX="32.0" layoutY="338.0" onKeyReleased="#handlekey" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
