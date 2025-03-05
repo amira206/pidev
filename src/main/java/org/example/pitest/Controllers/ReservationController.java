@@ -1,122 +1,66 @@
 package org.example.pitest.Controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import org.example.pitest.Model.Reservation;
+import org.example.pitest.Model.User;
+import org.example.pitest.Model.Offre;
 import org.example.pitest.Services.ReservationService;
-
-import java.util.List;
 
 public class ReservationController {
 
-    @FXML
-    private TableView<Reservation> tableau;
-    @FXML
-    private TableColumn<Reservation, Integer> idColumn;
-    @FXML
-    private TableColumn<Reservation, String> userColumn;
-    @FXML
-    private TableColumn<Reservation, String> offreColumn;
-    @FXML
-    private TableColumn<Reservation, Double> priceColumn;
-    @FXML
-    private TableColumn<Reservation, Void> deleteColumn;
-    @FXML
-    private TableColumn<Reservation, Void> editColumn;
-    @FXML
-    private TextField filterField;
-
-    private final ReservationService reservationService = ReservationService.getInstance();
-    private ObservableList<Reservation> reservationList;
+    private ReservationService reservationService = ReservationService.getInstance();
+    private User currentUser; // À récupérer depuis le système d'authentification
+    private Offre selectedOffre; // À récupérer depuis la sélection utilisateur
 
     @FXML
+    private Button btnReserver;
+
     public void initialize() {
-        setupTable();
-        loadReservations();
-    }
-
-    private void setupTable() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-        userColumn.setCellValueFactory(cellData ->
-                javafx.beans.binding.Bindings.createStringBinding(() ->
-                        String.valueOf(cellData.getValue().getUser().getId())
-                )
-        );
-        offreColumn.setCellValueFactory(cellData ->
-                javafx.beans.binding.Bindings.createStringBinding(() ->
-                        String.valueOf(cellData.getValue().getOffre().getId())
-                )
-        );
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        addDeleteButtonToTable();
-        addEditButtonToTable();
-    }
-
-    private void loadReservations() {
-        List<Reservation> reservations = reservationService.findAll();
-        reservationList = FXCollections.observableArrayList(reservations);
-        tableau.setItems(reservationList);
-    }
-
-    private void addDeleteButtonToTable() {
-        deleteColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button deleteButton = new Button("Supprimer");
-
-            {
-                deleteButton.setOnAction(event -> {
-                    Reservation reservation = getTableView().getItems().get(getIndex());
-                    reservationService.delete(reservation.getId());
-                    loadReservations(); // Rafraîchir la table
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(deleteButton);
-                }
-            }
-        });
-    }
-
-    private void addEditButtonToTable() {
-        editColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button editButton = new Button("Modifier");
-
-            {
-                editButton.setOnAction(event -> {
-                    Reservation reservation = getTableView().getItems().get(getIndex());
-                    // Implémenter la logique de modification
-                    System.out.println("Modifier: " + reservation.getId());
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(editButton);
-                }
-            }
-        });
+        // Initialisation des données si nécessaire
     }
 
     @FXML
-    private void exporterExcel() {
-        System.out.println("Exportation Excel en cours...");
+    private void handleReserver(ActionEvent event) {
+        try {
+            // Création de la réservation
+            Reservation reservation = new Reservation();
+            reservation.setUser(currentUser);
+            reservation.setOffre(selectedOffre);
+            reservation.setPrice(selectedOffre.getPrix()); // Supposons que Offre a un getPrice()
+
+            // Ajout de la réservation
+            reservationService.add(reservation);
+
+            showAlert("Succès", "Réservation effectuée avec succès!");
+            closeWindow();
+        } catch (Exception e) {
+            showAlert("Erreur", "Échec de la réservation: " + e.getMessage());
+        }
     }
 
-    @FXML
-    private void ajouterReservation() {
-        System.out.println("Ajout d'une nouvelle réservation...");
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void closeWindow() {
+        Stage stage = (Stage) btnReserver.getScene().getWindow();
+        stage.close();
+    }
+
+    // Méthodes pour injecter les données
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    public void setSelectedOffre(Offre offre) {
+        this.selectedOffre = offre;
     }
 }

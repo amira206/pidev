@@ -118,10 +118,6 @@ public class OffreService implements IService<Offre> {
              ResultSet rs = st.executeQuery(req)) {
 
             while (rs.next()) {
-                //User user = new User();
-                //Parcours parcours = new Parcours();
-                //user.setId(rs.getInt("user_id"));
-                //parcours.setId(rs.getInt("parcours_id"));
                 offres.add(new Offre(
                         rs.getInt("id"),
                         rs.getInt("nbplaces"),

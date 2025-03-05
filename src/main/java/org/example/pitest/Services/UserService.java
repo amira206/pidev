@@ -71,7 +71,7 @@ public class UserService implements IService<User> {
 
     @Override
     public User find(int id) {
-        String req = "SELECT * FROM users WHERE id = ?";
+        String req = "SELECT * FROM user WHERE id = ?";
         try (PreparedStatement pst = connexion.prepareStatement(req)) {
             pst.setInt(1, id);
             ResultSet rs = pst.executeQuery();

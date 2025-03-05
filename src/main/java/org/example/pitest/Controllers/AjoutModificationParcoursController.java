@@ -2,6 +2,7 @@ package org.example.pitest.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.pitest.Model.Parcours;
@@ -33,21 +34,24 @@ public class AjoutModificationParcoursController {
 
     @FXML
     private void saveParcours(ActionEvent event) {
+        if (!validateInput()) {
+            return;
+        }
+
         try {
-            String nom = nomField.getText();
-            String pickup = pickupField.getText();
-            String destination = destinationField.getText();
-            double latDest = Double.parseDouble(latDestField.getText());
-            double lngDest = Double.parseDouble(lngDestField.getText());
-            double latPickup = Double.parseDouble(latPickupField.getText());
-            double lngPickup = Double.parseDouble(lngPickupField.getText());
-            int distance = Integer.parseInt(distanceField.getText());
-            int time = Integer.parseInt(timeField.getText());
+            String nom = nomField.getText().trim();
+            String pickup = pickupField.getText().trim();
+            String destination = destinationField.getText().trim();
+            double latDest = Double.parseDouble(latDestField.getText().trim());
+            double lngDest = Double.parseDouble(lngDestField.getText().trim());
+            double latPickup = Double.parseDouble(latPickupField.getText().trim());
+            double lngPickup = Double.parseDouble(lngPickupField.getText().trim());
+            int distance = Integer.parseInt(distanceField.getText().trim());
+            int time = Integer.parseInt(timeField.getText().trim());
 
             if (parcours == null) {
                 Parcours newParcours = new Parcours(0, nom, pickup, destination,
                         latDest, lngDest, latPickup, lngPickup, distance, time);
-                System.out.println(newParcours);
                 parcoursService.add(newParcours);
             } else {
                 parcours.setName(nom);
@@ -64,8 +68,43 @@ public class AjoutModificationParcoursController {
 
             closeWindow(event);
         } catch (NumberFormatException e) {
-            System.err.println("Erreur : Veuillez entrer des valeurs valides pour les coordonnées, la distance et le temps.");
+            showAlert("Erreur", "Veuillez entrer des valeurs valides pour les champs numériques.");
         }
+    }
+
+    private boolean validateInput() {
+        // Vérifier si les champs sont vides après suppression des espaces
+        if (nomField.getText().trim().isEmpty() || pickupField.getText().trim().isEmpty() ||
+                destinationField.getText().trim().isEmpty() || latDestField.getText().trim().isEmpty() ||
+                lngDestField.getText().trim().isEmpty() || latPickupField.getText().trim().isEmpty() ||
+                lngPickupField.getText().trim().isEmpty() || distanceField.getText().trim().isEmpty() ||
+                timeField.getText().trim().isEmpty()) {
+            showAlert("Erreur", "Tous les champs doivent être remplis.");
+            return false;
+        }
+
+        try {
+            // Utiliser trim() pour éviter les espaces avant/après les nombres
+            Double.parseDouble(latDestField.getText().trim());
+            Double.parseDouble(lngDestField.getText().trim());
+            Double.parseDouble(latPickupField.getText().trim());
+            Double.parseDouble(lngPickupField.getText().trim());
+            Integer.parseInt(distanceField.getText().trim());
+            Integer.parseInt(timeField.getText().trim());
+        } catch (NumberFormatException e) {
+            showAlert("Erreur", "Les coordonnées, la distance et le temps doivent être des nombres valides.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
@@ -73,10 +112,10 @@ public class AjoutModificationParcoursController {
         Stage stage = (Stage) nomField.getScene().getWindow();
         stage.close();
     }
+
     private ParcoursController ParcoursController;
 
     public void setParcoursController(ParcoursController parcoursController) {
         this.ParcoursController = parcoursController;
     }
-
 }

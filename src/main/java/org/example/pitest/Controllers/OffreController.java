@@ -8,6 +8,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.pitest.Model.Offre;
+import org.example.pitest.Model.Parcours;
 import org.example.pitest.Services.OffreService;
 import org.example.pitest.Services.ParcoursService;
 
@@ -39,7 +40,10 @@ public class OffreController {
         nbplacestv.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNbPlaces()));
         usertv.setCellValueFactory(cellData -> new SimpleStringProperty());
         prixtv.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getPrix()));
-        parcourstv.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getParcours().getName()));
+        parcourstv.setCellValueFactory(cellData -> {
+            Parcours p = cellData.getValue().getParcours();
+            return new SimpleStringProperty(p != null ? p.toString() : "N/A");
+        });
         datetv.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate().toString()));
         bagagetv.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().isBagage() ? "Oui" : "Non"));
 
@@ -70,6 +74,7 @@ public class OffreController {
                 editButton.getStyleClass().add("button-primary");
                 editButton.setOnAction(event -> {
                     Offre offre = getTableView().getItems().get(getIndex());
+                    System.out.print(offre);
                     handleEditOffre(offre);
                 });
             }
