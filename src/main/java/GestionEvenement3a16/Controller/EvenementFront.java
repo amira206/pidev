@@ -1,8 +1,8 @@
+/*
 package GestionEvenement3a16.Controller;
 
 import GestionEvenement3a16.Entity.Evenement;
 import GestionEvenement3a16.Entity.Moyen_De_Transport;
-import GestionEvenement3a16.Entity.User;
 import GestionEvenement3a16.Services.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,6 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import kong.unirest.json.JSONObject;
+import org.example.pitest.Model.User;
+import org.example.pitest.Services.UserService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -28,12 +30,10 @@ public class EvenementFront {
 
     @FXML
     private ScrollPane most_popular_events;
-    private WeatherService weatherService;
 private UserService userService;
 
 public void initialize() {
     try {
-        weatherService = new WeatherService();
       userService = new UserService();
         List<Evenement> events = fetchEventsFromDatabase();
 
@@ -71,7 +71,6 @@ public GridPane createEventCard(Evenement event) {
     eventCard.getStyleClass().add("card"); // Add the style class
 
     eventCard.setVgap(10); // Set the amount of vertical space you want
-    WeatherService weatherService = new WeatherService();
     JSONObject weatherData = weatherService.getWeatherByCity(event.getLieu());
 
     String weatherInfo = "Weather data could not be retrieved.";
@@ -326,12 +325,7 @@ public GridPane createTicketCard(Evenement event) throws SQLException {
                     // Decrease the ticket quantity by one
 
                     User user= null;
-                    try {
-                        user = userService.getById(2);
-
-                    } catch (SQLException ex) {
-                        throw new RuntimeException(ex);
-                    }
+                    user = userService.find(2);
 
                     int userId = user.getId();
                     int ticketId = ticket.getId();
@@ -449,3 +443,4 @@ private List<Evenement> fetchEventsFromDatabase() throws SQLException {
     }
 
 }
+*/
