@@ -2,6 +2,7 @@
 
 package GestionEvenement3a16.Entity;
 
+import javax.management.relation.Role;
 import java.util.Collection;
 
 public class User {
