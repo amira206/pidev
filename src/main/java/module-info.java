@@ -7,7 +7,7 @@ module com.example.gestionevenement3a16 {
     requires javafx.graphics;
     requires com.google.gson;
     requires unirest.java;
-
+    requires twilio;
     opens GestionEvenement3a16.Entity to com.google.gson;
 
     opens GestionEvenement3a16 to javafx.fxml;

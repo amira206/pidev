@@ -334,21 +334,12 @@ public GridPane createTicketCard(Evenement event) throws SQLException {
                     }
 
                     int userId = user.getId();
-
-
-                    // Register the user for the ticket
                     int ticketId = ticket.getId();
-                    //String userId = getCurrentUrseId();
-                    // Assuming the user ID is "1" for testing purposes
-                    String to = "+21628913441";  // Replace with the phone number of the user
-                    String from = "+14194929057";  // Replace with your Twilio number
-                    String bodEventy = "Vous avez participer à  " + event.getNom() + "\n"+ "\n"
-                            + " Date: " + event.getDateEvenement().toString() + "\n"
-                            + "Ticket Type: " + ticket.getType() + "\n"
-                            + "Ticket Price: " + ticket.getPrix() + " DT" + "\n" ;
-                    //twilioService.sendSms(to, from, body);
+
+
 
 try {
+
     moyenDeTransportService.registerUserMoy(ticketId, userId);
     ticket.setnbrePlaces(ticket.getnbrePlaces() - 1);
     // Confirmation alert for successful registration
@@ -357,6 +348,17 @@ try {
     confirmationAlert.setHeaderText(null);
     confirmationAlert.setContentText("Your registration was successfully completed.");
     confirmationAlert.showAndWait();
+    TwilioService twilioService = new TwilioService();
+    // Register the user for the ticket
+    //String userId = getCurrentUrseId();
+    // Assuming the user ID is "1" for testing purposes
+    String to = "+21623111985";  // Replace with the phone number of the user
+    String from = "+19893822487";  // Replace with your Twilio number
+    String body = "Vous avez participer à  " + event.getNom() + "\n"+ "\n"
+            + " Date: " + event.getDateEvenement().toString() + "\n"
+            + "Moyen de transport Type: " + ticket.getType() + "\n"
+            + "Moyen de transport Price: " + ticket.getPrix() + " DT" + "\n" ;
+    twilioService.sendSms(to, from, body);
 } catch (SQLException sqlException) {
     if (sqlException.getMessage().contains("Duplicate entry")) {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
