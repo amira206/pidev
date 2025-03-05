@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reponse;
@@ -66,7 +66,7 @@ public class EditReponse {
         Alert a = new Alert(Alert.AlertType.INFORMATION, "votre reponse est modifier ");
         a.show();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gestionreclamation/DetailReponse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionEvenement3a16/DetailReponse.fxml"));
         Parent detailReeponseView = loader.load();
         DetailReponse detailReponse = loader.getController();
         detailReponse.setData(rep); // Passer la réclamation modifiée
@@ -74,4 +74,4 @@ public class EditReponse {
         // Remplacer le contenu de detailanchpane avec la vue de détail actualisée
         detailanchpane.getChildren().setAll(detailReeponseView);
     }
-}*/
+}

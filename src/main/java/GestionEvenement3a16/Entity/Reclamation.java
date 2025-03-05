@@ -41,7 +41,6 @@ public class Reclamation {
     public String toString() {
         return "Reclamation{" +
                 "id=" + id +
-                ", utilisateur=" + utilisateur +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
@@ -50,7 +49,7 @@ public class Reclamation {
                 ", sujet='" + sujet + '\'' +
                 ", description='" + description + '\'' +
                 ", date=" + date +
-
+                ", utilisateur=" + utilisateur +
                 '}';
     }
 

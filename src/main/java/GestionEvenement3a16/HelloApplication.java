@@ -18,6 +18,7 @@ public class HelloApplication extends Application {
         Parent root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
+
         stage.setTitle("GestionEvenement3a16");
         stage.setScene(scene);
         stage.show();

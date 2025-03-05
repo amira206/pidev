@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="PaneReclamation" onMouseClicked="#handleReclamationClick" prefHeight="165.0" prefWidth="300.0" stylesheets="@cardReclamation.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestionreclamation.Controller.OneReclamation">
+<Pane fx:id="PaneReclamation" onMouseClicked="#handleReclamationClick" prefHeight="165.0" prefWidth="300.0" stylesheets="@cardReclamation.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvenement3a16.Controller.ReclamationController.OneReclamation">
    <children>
       <Pane layoutX="50" layoutY="0" prefHeight="165.0" prefWidth="200.0">
          <children>

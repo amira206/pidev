@@ -84,7 +84,12 @@
 }
 
 
-
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 0);
+}
 
 .popular-event-card {
     /* Add your styles here */
@@ -102,6 +107,12 @@
     -fx-transition: all 0.3s ease;
 
 }
+
+.card-label-bold {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
 .popular-event-card:hover {
     /* Add your hover styles here */
     -fx-effect: dropshadow(three-pass-box, rgba(255, 165, 0, 0.87), 10, 0, 0, 10);

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="prettyPane" prefHeight="395.0" prefWidth="395.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestionreclamation.Controller.Editreclamation">
+<AnchorPane id="prettyPane" prefHeight="395.0" prefWidth="395.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvenement3a16.Controller.ReclamationController.Editreclamation">
     <children>
         <VBox alignment="CENTER" layoutX="-3.0" prefHeight="370.0" prefWidth="413.0" spacing="10.0">
             <HBox maxWidth="-Infinity" spacing="10.0">
@@ -46,7 +46,7 @@
                    <graphic>
                        <ImageView fitHeight="15" fitWidth="15" pickOnBounds="true" preserveRatio="true">
                            <image>
-                               <Image url="@image/edit.png" /> <!-- Replace with your icon path -->
+                               <Image url="@images/edit.png" /> <!-- Replace with your icon path -->
                            </image>
                        </ImageView>
                    </graphic>

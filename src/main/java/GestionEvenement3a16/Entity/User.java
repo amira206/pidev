@@ -2,6 +2,7 @@
 
 package GestionEvenement3a16.Entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class User {
@@ -11,12 +12,17 @@ public class User {
     private String password;
     private Role role;
     private Collection<Moyen_De_Transport> moyenDeTransports;
-
-    public User() {
-    }
+    private Collection<Reclamation> reclamations;
+    private Collection<Reponse> reponses;
 
     public static User CurrentUser;
 
+    public User() {
+        // Default constructor
+        this.reclamations = new ArrayList<>();
+        this.reponses = new ArrayList<>();
+
+    }
     public User(String userName, String email, String password, Role role){
         this.userName = userName;
         this.email = email;
@@ -92,4 +98,19 @@ public class User {
                 '}';
     }
 
+    public Collection<Reclamation> getReclamations() {
+        return reclamations;
+    }
+
+    public void setReclamations(Collection<Reclamation> reclamations) {
+        this.reclamations = reclamations;
+    }
+
+    public Collection<Reponse> getReponses() {
+        return reponses;
+    }
+
+    public void setReponses(Collection<Reponse> reponses) {
+        this.reponses = reponses;
+    }
 }

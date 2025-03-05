@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Services;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -31,9 +31,9 @@ public class ReclamationService {
                 User user = new User();
 
                 int id = rs.getInt(1);
-                int userId = rs.getInt(2);
-                String nom = rs.getString(3);
-                String prenom = rs.getString(10);
+                int userId = rs.getInt(10);
+                String nom = rs.getString(2);
+                String prenom = rs.getString(3);
                 String email = rs.getString(4);
                 int numTele = rs.getInt(5);
                 String etat = rs.getString(6);
@@ -66,11 +66,11 @@ public class ReclamationService {
     }
 
     public void ajouterReclamation(Reclamation r) {
-        String req = "INSERT INTO reclamation (utilisateur_id, nom, email, num_tele, etat, sujet, description, date, prenom) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String req = "INSERT INTO reclamation (utilisateur_id, nom, email, numTele, etat, sujet, description, date, prenom) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement preparedStatement = cnx.prepareStatement(req);
             // Définir les valeurs des paramètres dans la requête
-            preparedStatement.setString(1, r.getUtilisateur().getId());
+            preparedStatement.setInt(1, r.getUtilisateur().getId());
             preparedStatement.setString(2, r.getNom());
             preparedStatement.setString(3, r.getEmail());
             preparedStatement.setInt(4, r.getNumTele());
@@ -115,7 +115,7 @@ public class ReclamationService {
     private void supprimerReponsesDeReclamation(Reclamation r) {
         try {
             // Supprimer les réponses associées à la réclamation
-            String req = "DELETE FROM reponse WHERE id_reclamation_id=?";
+            String req = "DELETE FROM reponse WHERE idReclamation=?";
             PreparedStatement st = cnx.prepareStatement(req);
             st.setInt(1, r.getId());
             int rowsAffected = st.executeUpdate();
@@ -131,7 +131,7 @@ public class ReclamationService {
 
     public void modifierReclamation(Reclamation r) {
         if (r.getId() != 0) {
-            String req = "UPDATE `reclamation` SET nom=?, prenom=?, email=?, num_tele=?, sujet=?, description=?, etat=?, date=? WHERE id=?";
+            String req = "UPDATE `reclamation` SET nom=?, prenom=?, email=?, numTele=?, sujet=?, description=?, etat=?, date=? WHERE id=?";
             try {
                 PreparedStatement st = cnx.prepareStatement(req);
                 st.setString(1, r.getNom());
@@ -163,7 +163,7 @@ public class ReclamationService {
 
     public Reponse getReponseByReclamationId(int reclamationId) {
         Reponse response = null;
-        String sql = "SELECT * FROM reponse WHERE id_reclamation_id = ?";
+        String sql = "SELECT * FROM reponse WHERE idReclamation= ?";
         try {
             PreparedStatement preparedStatement = cnx.prepareStatement(sql);
             preparedStatement.setInt(1, reclamationId);
@@ -247,4 +247,4 @@ public class ReclamationService {
 
         return weeklyResponseRate;
     }}
-*/
+

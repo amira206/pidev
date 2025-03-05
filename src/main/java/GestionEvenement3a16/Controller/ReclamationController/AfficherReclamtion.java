@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -23,21 +23,21 @@ public class AfficherReclamtion {
     private VBox vbox;
     private HBox paginationBox; // New HBox for the pagination buttons
 
-    private static final int ITEMS_PER_PAGE = 5;
+    private static final int ITEMS_PER_PAGE = 2;
     private int currentPage = 1;
     private List<Reclamation> reclamations;
     private ReclamationService reclamationService; // Define reclamationService as an instance variable
 
     public AfficherReclamtion() {
-        String currentUserId = "1";
-                */
-/* SessionManager.getInstance().getCurrentUser().getId();*//*
+        String currentUserId = "2";
+
+/* SessionManager.getInstance().getCurrentUser().getId();*/
 
 
         this.reclamationService = new ReclamationService(); // Assign to the instance variable
         reclamations = reclamationService.afficherreclamation();
         reclamations = reclamationService.afficherreclamation().stream()
-                .filter(reclamation -> reclamation.getUtilisateur().getId().equals(currentUserId))
+                .filter(reclamation -> reclamation.getUtilisateur().getId() == Integer.parseInt(currentUserId))
                 .collect(Collectors.toList());
 
         vbox = new VBox();
@@ -54,7 +54,7 @@ public class AfficherReclamtion {
     public void createCards() {
         // Initialize vbox
         vbox.getChildren().clear();
-        vbox.setSpacing(10); // Set spacing between the cards
+        vbox.setSpacing(15); // Set spacing between the cards
         // Add a title to the vbox
         Label titleLabel = new Label("Reclamations:                                                             Reponses:");
         titleLabel.getStyleClass().add("title"); // Apply the CSS class
@@ -135,7 +135,7 @@ public class AfficherReclamtion {
                 imageView.setFitHeight(200); // Replace with your desired height
 
                 // Set the image path
-                String imagePath = "/Gestionreclamation/image/enAttent.jpg"; // Replace with the path to your waiting image
+                String imagePath = "/GestionEvenement3a16/images/enAttent.jpg"; // Replace with the path to your waiting image
 
                 // Check if the image file exists
                 URL url = getClass().getResource(imagePath);
@@ -235,4 +235,4 @@ public class AfficherReclamtion {
 
         return vbox;
     }
-}*/
+}

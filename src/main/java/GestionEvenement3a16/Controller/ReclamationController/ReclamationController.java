@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -223,7 +223,7 @@ public class ReclamationController implements Initializable {
         int columns = 0;
         int row = 1;
         for (Reclamation rec : reclamations) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Gestionreclamation/OneReclamation.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GestionEvenement3a16/OneReclamation.fxml"));
             Pane pane = fxmlLoader.load(); // Charger en tant que Pane
             OneReclamation oneReclamation = fxmlLoader.getController();
             oneReclamation.setReclamationController(this); // Passer une référence de ReclamationController
@@ -296,4 +296,4 @@ public class ReclamationController implements Initializable {
         x.setLabel("Week");
         y.setLabel("Performance");
     }
-}*/
+}

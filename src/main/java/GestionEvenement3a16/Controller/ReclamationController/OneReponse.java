@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -45,7 +45,7 @@ public class OneReponse {
 
     @FXML
     private void handleReponseClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gestionreclamation/DetailReponse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionEvenement3a16/DetailReponse.fxml"));
         Parent detailView = loader.load();
         DetailReponse detailController = loader.getController();
         detailController.setData(rep);
@@ -56,4 +56,4 @@ public class OneReponse {
 
 
     }
-}*/
+}

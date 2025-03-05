@@ -1,10 +1,12 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
+import GestionEvenement3a16.Entity.Role;
 import GestionEvenement3a16.Entity.User;
 import GestionEvenement3a16.Services.BadWordService;
 import GestionEvenement3a16.Services.ReclamationService;
+import GestionEvenement3a16.Services.UserService;
 import GestionEvenement3a16.Services.openIAsevice;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -16,6 +18,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -62,12 +65,13 @@ public class AjouterReclamation implements Initializable {
     private Label fileError;
     @FXML
     private Label descriptionVoiceError;
+    private UserService userService;
 
     @Override
     public void initialize (URL location, ResourceBundle resources) {
         // Initialize the ComboBox items
-        sujet.getItems().addAll("Salle", "Service");
-
+        sujet.getItems().addAll("Evenement", "covoiturage", "Transport", "Autre");
+        userService = new UserService();
         // Make descriptionvoice TextArea read-only
         descriptionvoice.setEditable(false);
 
@@ -126,8 +130,15 @@ public class AjouterReclamation implements Initializable {
     void ajouterText(ActionEvent event) {
         boolean isValidInput = true;
 
-        User user = new User()*/
-/*SessionManager.getInstance().getCurrentUser()*//*
+        User user = new User();
+
+        try {
+            user = userService.getById(2);
+
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+/*SessionManager.getInstance().getCurrentUser()*/
 ;
 
         Reclamation NewReclamation = new Reclamation();
@@ -174,10 +185,10 @@ public class AjouterReclamation implements Initializable {
 
         if (isValidInput) {
             NewReclamation.setEtat("En attente");
-            NewReclamation.setNom(user.getNom());
-            NewReclamation.setPrenom(user.getPrenom());
+            NewReclamation.setNom(user.getUserName());
+            NewReclamation.setPrenom(user.getUserName());
             NewReclamation.setEmail(user.getEmail());
-            NewReclamation.setNumTele(user.getNumTele());
+            NewReclamation.setNumTele(12345678);
             NewReclamation.setUtilisateur(user);
 
             ReclamationService reclamationService = new ReclamationService();
@@ -223,23 +234,22 @@ public class AjouterReclamation implements Initializable {
         if (isValidInput) {
             User user = new User();
             user.setId(1);
-            user.setNom("iyed");
-            user.setPrenom("wederni");
+            user.setUserName("iyed");
+          //  user.setPrenom("wederni");
             user.setEmail("wed@gmail.com");
-            user.setNumTele(12345678);
-            user.setRoles(new String[]{"admin"});
+          //  user.setNumTele(12345678);
+            user.setRole(Role.ADMIN);
             user.setPassword("12345678");
-            user.setAdresse("tunis");
+           // user.setAdresse("tunis");
 
             Reclamation NewReclamation = new Reclamation();
             NewReclamation.setDate(LocalDateTime.now());
             NewReclamation.setDescription(descriptionvoice.getText());
             NewReclamation.setSujet("voix");
             NewReclamation.setEtat("En attente");
-            NewReclamation.setNom(user.getNom());
-            NewReclamation.setPrenom(user.getPrenom());
+            NewReclamation.setNom(user.getUserName());
             NewReclamation.setEmail(user.getEmail());
-            NewReclamation.setNumTele(user.getNumTele());
+          //  NewReclamation.setNumTele(user.getNumTele());
             NewReclamation.setUtilisateur(user);
 
             ReclamationService reclamationService = new ReclamationService();
@@ -255,6 +265,6 @@ public class AjouterReclamation implements Initializable {
         }
     }
 
-}
 
-*/
+
+}

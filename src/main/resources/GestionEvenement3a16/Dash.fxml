@@ -90,18 +90,30 @@
                         <Insets left="40.0" />
                      </padding>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="262.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Gestion Reclamations" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/reclamaton.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <padding>
-                        <Insets left="40.0" />
-                     </padding>
-                  </Button>
+                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#loadRec" prefHeight="49.0" prefWidth="262.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Gerée Reclamations" textFill="WHITE">
+                       <graphic>
+                           <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@images/rec1.png" />
+                               </image>
+                           </ImageView>
+                       </graphic>
+                       <padding>
+                           <Insets left="40.0" />
+                       </padding>
+                   </Button>
+                   <Button  alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="308.0" onAction="#loadRep" mnemonicParsing="false"  prefHeight="49.0" prefWidth="262.0" styleClass="button1" stylesheets="@fullpackstyling.css" text="Geréé Reponses" textFill="WHITE">
+                       <graphic>
+                           <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                               <image>
+                                   <Image url="@images/reclamaton.png" />
+                               </image>
+                           </ImageView>
+                       </graphic>
+                       <padding>
+                           <Insets left="40.0" />
+                       </padding>
+                   </Button>
                </children>
             </VBox>
             <Pane fx:id="dashboard" layoutY="86.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">

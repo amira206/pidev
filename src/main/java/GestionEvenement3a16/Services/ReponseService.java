@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Services;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -21,7 +21,7 @@ public class ReponseService {
 
     public List<Reponse> afficherReponse() {
         List<Reponse> reponseList = new ArrayList<>();
-        String req = "SELECT * FROM reponse INNER JOIN reclamation ON reponse.id_reclamation_id = reclamation.id INNER JOIN user ON reponse.utilisateur_id = user.id";
+        String req = "SELECT * FROM reponse INNER JOIN reclamation ON reponse.idReclamation = reclamation.id INNER JOIN user ON reponse.utilisateur_id = user.id";
         try {
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
@@ -36,7 +36,7 @@ public class ReponseService {
                 idReclamation.setNom(rs.getString("reclamation.nom")); // Fetch the nom field
                 idReclamation.setPrenom(rs.getString("reclamation.prenom"));
                 idReclamation.setEmail(rs.getString("reclamation.email"));
-                idReclamation.setNumTele(rs.getInt("reclamation.num_tele"));
+                idReclamation.setNumTele(rs.getInt("reclamation.numTele"));
                 idReclamation.setEtat(rs.getString("reclamation.etat"));
                 idReclamation.setSujet(rs.getString("reclamation.sujet"));
                 idReclamation.setDescription(rs.getString("reclamation.description"));
@@ -57,7 +57,7 @@ public class ReponseService {
         return reponseList;
     }
 
-    public void ajouterReponse(Reponse r) {String req = "INSERT INTO `reponse`(`utilisateur_id`, `id_reclamation_id`, `date`, `reponse`) VALUES ('"+r.getUtilisateur().getId()+"','"+r.getidReclamation().getId()+"','"+r.getDate()+"','"+r.getReponse()+"')";
+    public void ajouterReponse(Reponse r) {String req = "INSERT INTO `reponse`( `date`, `reponse`,`utilisateur_id`, `idReclamation`) VALUES ('"+r.getDate()+"','"+r.getReponse()+"','"+r.getUtilisateur().getId()+"','"+r.getidReclamation().getId()+"')";
 
         try {
             Statement st = cnx.createStatement();
@@ -111,4 +111,4 @@ public class ReponseService {
     }
 
 }
-*/
+

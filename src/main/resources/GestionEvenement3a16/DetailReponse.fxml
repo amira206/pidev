@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="detailanchpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="413.0" prefWidth="925.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Gestionreclamation.Controller.DetailReponse">
+<AnchorPane fx:id="detailanchpane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="413.0" prefWidth="925.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvenement3a16.Controller.ReclamationController.DetailReponse">
     <children>
       <AnchorPane id="prettyPane" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="239.0" prefWidth="342.0" stylesheets="@style.css">
          <children>
@@ -102,7 +102,7 @@
                              <graphic>
                                  <ImageView fitHeight="15" fitWidth="15" pickOnBounds="true" preserveRatio="true">
                                      <image>
-                                         <Image url="@image/edit.png" /> <!-- Replace with your icon path -->
+                                         <Image url="@images/edit.png" /> <!-- Replace with your icon path -->
                                      </image>
                                  </ImageView>
                              </graphic>
@@ -111,7 +111,7 @@
                              <graphic>
                                  <ImageView fitHeight="15" fitWidth="15" pickOnBounds="true" preserveRatio="true">
                                      <image>
-                                         <Image url="@image/delete3.png" /> <!-- Replace with your icon path -->
+                                         <Image url="@images/delete3.png" /> <!-- Replace with your icon path -->
                                      </image>
                                  </ImageView>
                              </graphic>
@@ -129,7 +129,7 @@
             <graphic>
                 <ImageView fitHeight="15" fitWidth="15" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@image/back.png" /> <!-- Replace with your icon path -->
+                        <Image url="@images/back.png" /> <!-- Replace with your icon path -->
                     </image>
                 </ImageView>
             </graphic>

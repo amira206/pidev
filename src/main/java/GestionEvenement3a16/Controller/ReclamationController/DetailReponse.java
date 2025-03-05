@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -60,7 +60,7 @@ public class DetailReponse {
 
     @FXML
     private void handleEditButtonClick() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gestionreclamation/EditReponse.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionEvenement3a16/EditReponse.fxml"));
         Parent editReponseView = loader.load();
         EditReponse editReponseController = loader.getController();
         editReponseController.setDetailReponseAnchorPane(editreponse);
@@ -82,4 +82,4 @@ public class DetailReponse {
     }
 
 }
-*/
+

@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -83,6 +83,7 @@ public class AjouterRepense {
 
             // Set the reclamation for this response
             newReponse.setidReclamation(rec);
+
             User currentUser = rec.getUtilisateur(); // Get the user from the reclamation
             if(currentUser == null) {
                 try {
@@ -110,12 +111,12 @@ public class AjouterRepense {
                     "</div>" +
                     "</div>";
 
-            try {
+        /*    try {
                 emailAPI.sendEmail(rec.getEmail(), "Response Added", htmlMessage);
             } catch (MessagingException e) {
                 e.printStackTrace();
             }
-
+*/
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Response Added");
             alert.setHeaderText(null);
@@ -129,4 +130,4 @@ public class AjouterRepense {
             detailanchpane.getChildren().clear();
         }
     }
-}*/
+}

@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reclamation;
@@ -44,7 +44,9 @@ public class Editreclamation implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Initialize the ComboBox items
-        combosujet.getItems().addAll("Salle", "Service");
+        combosujet.getItems().addAll("Evenement", "covoiturage", "Transport", "Autre");
+
+
     }
 
     public void setData(Reclamation rec) {
@@ -86,7 +88,7 @@ public class Editreclamation implements Initializable {
 
         Alert a = new Alert(Alert.AlertType.INFORMATION, "votre reclamation est modifier ");
         a.show();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Gestionreclamation/DetailReclamation.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GestionEvenement3a16/DetailReclamation.fxml"));
         Parent detailReclamationView = loader.load();
         DetailReclamation detailReclamationController = loader.getController();
         detailReclamationController.setData(rec); // Passer la réclamation modifiée
@@ -95,4 +97,4 @@ public class Editreclamation implements Initializable {
         detailanchpane.getChildren().setAll(detailReclamationView);
     }
 }
-*/
+

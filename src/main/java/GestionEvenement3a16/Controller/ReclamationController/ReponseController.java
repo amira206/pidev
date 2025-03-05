@@ -1,4 +1,4 @@
-/*
+
 package GestionEvenement3a16.Controller.ReclamationController;
 
 import GestionEvenement3a16.Entity.Reponse;
@@ -116,7 +116,7 @@ public class ReponseController implements Initializable {
         int columns = 0;
         int row = 1;
         for (Reponse rep : reponses) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Gestionreclamation/OneReponse.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GestionEvenement3a16/OneReponse.fxml"));
             Pane pane = fxmlLoader.load(); // Load as Pane
             OneReponse oneReponse = fxmlLoader.getController();
             oneReponse.setData(rep);
@@ -146,4 +146,4 @@ public class ReponseController implements Initializable {
         }
         return reponseList;
     }
-}*/
+}

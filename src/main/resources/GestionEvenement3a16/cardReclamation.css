@@ -37,3 +37,11 @@ Label:hover {
     -fx-scale-y: 1.05;
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.4) , 15,0,0,2 );
 }
+
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 0);
+}
