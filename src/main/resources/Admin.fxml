@@ -27,5 +27,7 @@
          </font>
       </Button>
       <TextField fx:id="rechercherU" layoutX="52.0" layoutY="334.0" prefHeight="42.0" prefWidth="203.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" />
+      <Button layoutX="365.0" layoutY="334.0" mnemonicParsing="false" onAction="#onGeneratePdf" style="-fx-background-radius: 20;" styleClass="button-design" stylesheets="@design.css" text="PDF" />
+
    </children>
 </AnchorPane>
