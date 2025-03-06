@@ -1,0 +1,17 @@
+.textfield-design{
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+        -fx-border-color: linear-gradient(to bottom right , rgba(10, 95, 89, 0.34), rgba(10, 95, 89, 0.76));
+    -fx-border-radius: 10px;
+    -fx-text-inner-color:#000;
+}
+
+.button-design{
+    -fx-background-color: linear-gradient(to bottom right , rgba(10, 95, 89, 0.34), rgba(10, 95, 89, 0.76));
+    -fx-border-radius: 20px;
+    -fx-cursor: hand;
+}
+.AnchoPane{
+    -fx-background-color: linear-gradient(to bottom right , rgba(151, 161, 160, 0.02), rgba(152, 163, 162, 0.88));
+
+}

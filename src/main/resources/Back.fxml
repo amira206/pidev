@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Back">
+   <children>
+      <Label alignment="CENTER" layoutX="190.0" layoutY="26.0" prefHeight="30.0" prefWidth="235.0" text="Welcom Admin !" textFill="#46149c">
+         <font>
+            <Font name="System Bold Italic" size="28.0" />
+         </font>
+      </Label>
+      <Button layoutX="190.0" layoutY="330.0" mnemonicParsing="false" onAction="#Admin" style="-fx-background-color: #46149c; -fx-background-radius: 50;" text="Gestion des utilisateurs" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="1.0" layoutY="264.0" mnemonicParsing="false" style="-fx-background-color: #46149c; -fx-background-radius: 50;" text="Gestion des Evenements" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutY="148.0" mnemonicParsing="false" style="-fx-background-color: #46149c; -fx-background-radius: 50;" text="Gestion des Covoiturage" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="354.0" layoutY="118.0" mnemonicParsing="false" style="-fx-background-color: #46149c; -fx-background-radius: 50;" text="Gestion des Reclamations " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="392.0" layoutY="264.0" mnemonicParsing="false" style="-fx-background-color: #46149c; -fx-background-radius: 50;" text="Gestion des Locations" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button layoutX="153.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: #46149c; -fx-background-radius: 50;" text="Gestion Taha" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
