@@ -1,42 +1,47 @@
 // Language: java
 package GestionEvenement3a16.Services;
 
-import org.vosk.Model;
-import org.vosk.Recognizer;
+/*
+
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
+import org.json.JSONObject;
+
+
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+*/
+
+import kong.unirest.HttpResponse;
+import kong.unirest.Unirest;
+import kong.unirest.json.JSONObject;
+
+import java.io.File;
 
 public class openIAsevice {
-    public static void main(String[] args) {
+
+
+    public String executeService(String filePath) {
+        String transcription = null;
+
         try {
-            // Path to the Vosk model folder (download the model first)
-            String modelPath = "model";
-            Model model = new Model(modelPath);
+            HttpResponse<String> response = Unirest.post("https://api.openai.com/v1/audio/transcriptions")
+                    .header("Authorization", "Bearer " + "h")
+                    .field("file", new File(filePath))
+                    .field("model", "whisper-1")
+                    .asString();
+            System.out.println("Response Body: " + response.getBody()); // Print the response body
 
-            // Path to the audio file (must be mono PCM WAV with 16000 Hz sample rate)
-            File audioFile = new File("audio.wav");
-            InputStream ais = new FileInputStream(audioFile);
-
-            // Create a Recognizer with 16000 Hz sample rate
-            Recognizer recognizer = new Recognizer(model, 16000);
-
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = ais.read(buffer)) != -1) {
-                if (recognizer.acceptWaveForm(buffer, bytesRead)) {
-                    System.out.println(recognizer.getResult());
-                } else {
-                    System.out.println(recognizer.getPartialResult());
-                }
-            }
-            System.out.println(recognizer.getFinalResult());
-
-            ais.close();
-            recognizer.close();
-            model.close();
+            JSONObject jsonResponse = new JSONObject(response.getBody());
+            transcription = jsonResponse.getString("text");
+            System.out.println(transcription);
+            System.out.println("valid");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return transcription;
     }
+
+
 }
