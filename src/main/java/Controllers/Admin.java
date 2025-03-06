@@ -133,6 +133,16 @@ public class Admin {
         searchRec();
     }
 
+     @FXML
+    void onGeneratePdf(ActionEvent event) {
+        User selectedUser = tableViewU.getSelectionModel().getSelectedItem();
+
+        if (selectedUser != null) {
+            PDFApiGenerator.generateUserPdf(selectedUser);
+        } else {
+            System.out.println("Aucun utilisateur sélectionné.");
+        }
+    }
 
     public ObservableList<User> getlist() {
         Connection cnx = MyDabase.getInstance().getConnection();
