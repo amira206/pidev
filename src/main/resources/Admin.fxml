@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="AnchoPane" stylesheets="@design.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Admin">
+   <children>
+      <TableView fx:id="tableViewU" layoutX="50.0" layoutY="65.0" prefHeight="250.0" prefWidth="500.0">
+        <columns>
+          <TableColumn fx:id="idU" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="userNameU" minWidth="50.0" prefWidth="150.0" text="User Name" />
+            <TableColumn fx:id="emailU" prefWidth="150.0" text="Email" />
+            <TableColumn fx:id="roleU" maxWidth="150.0" prefWidth="164.79998779296875" text="Role" />
+        </columns>
+      </TableView>
+      <Button layoutX="515.0" layoutY="333.0" mnemonicParsing="false" onAction="#SupprimerUser" style="-fx-background-radius: 50;" styleClass="button-design" stylesheets="@design.css" text="Supprimer" />
+      <Button layoutX="433.0" layoutY="333.0" mnemonicParsing="false" onAction="#ModifierUser" prefHeight="26.0" prefWidth="71.0" style="-fx-background-radius: 50;" styleClass="button-design" stylesheets="@design.css" text="Modifier" />
+      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#actualiser" style="-fx-background-radius: 50;" styleClass="button-design" stylesheets="@design.css" text="Actualiser" />
+      <Button layoutX="515.0" layoutY="14.0" mnemonicParsing="false" onAction="#exit" prefHeight="26.0" prefWidth="62.0" style="-fx-background-color: Red; -fx-background-radius: 50;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="rechercherU" layoutX="52.0" layoutY="334.0" prefHeight="42.0" prefWidth="203.0" promptText="Recherche..." styleClass="textfield-design" stylesheets="@design.css" />
+   </children>
+</AnchorPane>

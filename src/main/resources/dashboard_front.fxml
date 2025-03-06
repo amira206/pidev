@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardFront_Controller">
+   <children>
+      <Pane layoutX="-1.0" prefHeight="64.0" prefWidth="612.0" style="-fx-background-color: #87CEEB;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <children>
+            <Pane prefHeight="64.0" prefWidth="100.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Label layoutX="27.0" layoutY="19.0" prefHeight="27.0" prefWidth="46.0" text="Menu">
+                     <font>
+                        <Font name="Segoe UI" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label layoutX="268.0" layoutY="14.0" prefHeight="27.0" prefWidth="129.0" text="Go Mobility">
+               <font>
+                  <Font name="Segoe UI" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox layoutX="-1.0" layoutY="62.0" prefHeight="338.0" prefWidth="100.0" style="-fx-background-color: #87CEEE;">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Button fx:id="gestion_utilisateur_butt" layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleGestionUtilisateur" prefHeight="56.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Gestion utilisateur" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Button fx:id="gestion_livraison_butt" mnemonicParsing="false" onAction="#handleGestionLivraison" prefHeight="56.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Gestion Livraison" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="187.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Button fx:id="gestion_evennement_butt" mnemonicParsing="false" onAction="#handleGestionEvenement" prefHeight="56.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Gestion Evennement" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Button fx:id="gestion_couvoiturage_butt" mnemonicParsing="false" onAction="#handleGestionCouvoiturage" prefHeight="56.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Gestion Couvoiturage" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="276.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Button fx:id="gestion_reservation_butt" mnemonicParsing="false" onAction="#handleGestionReservation" prefHeight="56.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Gestion Réservation" />
+               </children>
+            </Pane>
+            <Pane layoutX="10.0" layoutY="294.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: rgba(0, 0, 0, 0.2); -fx-border-width: 2px;">
+               <children>
+                  <Button fx:id="gestion_reclamation_butt" mnemonicParsing="false" onAction="#handleGestionReclamation" prefHeight="56.0" prefWidth="100.0" style="-fx-background-color: transparent;" text="Gestion Reclamation" />
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+      <AnchorPane fx:id="Gestions_scene" layoutX="98.0" layoutY="62.0" prefHeight="338.0" prefWidth="512.0" />
+   </children>
+</AnchorPane>

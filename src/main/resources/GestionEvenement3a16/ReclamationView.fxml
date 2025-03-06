@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderpanereclamation" prefHeight="768.0" prefWidth="1104.0" stylesheets="@ReclamationView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvenement3a16.Controller.ReclamationController.ReclamationController">
+
+   <top>
+      <HBox prefHeight="242.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="212.0" prefWidth="32.0" />
+            <Pane maxHeight="-Infinity" prefHeight="212.0" prefWidth="379.0">
+               <children>
+                  <TextField fx:id="searchRec" layoutX="3.0" layoutY="16.0" maxHeight="-Infinity" prefHeight="35.0" prefWidth="314.0" promptText="Search" />
+                  <Pane fx:id="paneTraite" layoutX="14.0" layoutY="102.0" prefHeight="146.0" prefWidth="337.0">
+                     <children>
+                        <ProgressBar fx:id="recTraite" layoutX="21.0" layoutY="84.0" prefHeight="36.0" prefWidth="304.0" progress="0.0" />
+                        <Text layoutX="9.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamtions Traités:" />
+                        <Label fx:id="recTraiteLabel" layoutX="127.0" layoutY="48.0" text="traitee" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane maxHeight="-Infinity" prefHeight="242.0" prefWidth="866.0">
+               <children>
+                  <MenuButton fx:id="tous" layoutX="445.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="131.0" styleClass="filter-menu-button" text="FILTRE">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Traité" />
+                        <MenuItem mnemonicParsing="false" text="En attente" />
+                        <MenuItem mnemonicParsing="false" text="Tous" />
+                     </items>
+                  </MenuButton>
+                  <Pane fx:id="paneNonTraite" layoutX="58.0" layoutY="104.0" prefHeight="140.0" prefWidth="333.0">
+                     <children>
+                        <ProgressBar fx:id="recNonTraite" layoutX="11.0" layoutY="82.0" prefHeight="37.0" prefWidth="316.0" progress="0.0" />
+                        <Text layoutX="10.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamtions Non Traités:" />
+                        <Label fx:id="recNonTraiteLabel" layoutX="123.0" layoutY="45.0" text="Non traitee" />
+                     </children>
+                  </Pane>
+                  <LineChart fx:id="rendement" layoutX="410.0" layoutY="97.0" prefHeight="149.0" prefWidth="364.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" fx:id="x" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="y" side="LEFT" tickLength="5.0" />
+                    </yAxis>
+                  </LineChart>
+               </children>
+            </Pane>
+         </children>
+
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true">
+         <content>
+            <VBox fx:id="vboxContainer" prefWidth="1278.0">
+               <!-- Your existing content -->
+               <GridPane fx:id="GridReclamation">
+                  <rowConstraints>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+               </GridPane>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+
+</BorderPane>
