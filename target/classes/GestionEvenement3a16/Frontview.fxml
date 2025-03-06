@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<ScrollPane fx:id="s" prefHeight="768.0" prefWidth="1366.0" stylesheets="@FrontView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GestionEvenement3a16.Controller.FrontViewController">
+   <content>
+      <AnchorPane fx:id="anchorpane1" prefHeight="768.0" prefWidth="1366.0">
+         <children>
+            <Pane prefHeight="768.0" prefWidth="1366.0">
+               <children>
+                  <HBox alignment="TOP_CENTER" layoutX="-37.0" layoutY="34.0" prefHeight="64.0" prefWidth="1349.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="118.0" text="Home" />
+                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="118.0" text="Sales" />
+                        <Button layoutX="128.0" layoutY="10.0" mnemonicParsing="false" onAction="#loadEvenementFront" prefHeight="39.0" prefWidth="118.0" text="Evenement" />
+                        <Button layoutX="247.0" layoutY="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="118.0" text="Cours" />
+                        <Button layoutX="365.0" layoutY="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="118.0" text="Produit" />
+                        <Button layoutX="484.0" layoutY="10.0" mnemonicParsing="false" onAction="#reclamation" prefHeight="39.0" prefWidth="128.0" text="Reclamation" />
+                        <Button fx:id="logoutButton" layoutX="484.0" layoutY="10.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="128.0" text="Logout" textFill="#ec0606" />
+      
+                           </children>
+                  </HBox>
+                  <ImageView fitHeight="38.0" fitWidth="31.0" layoutX="1211.0" layoutY="26.0" onMouseClicked="#listeReclamtion" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/mail.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
+            <AnchorPane fx:id="achorfront" layoutX="295.0" layoutY="273.0" prefHeight="423.0" prefWidth="1359.0" />
+            <Pane layoutX="479.0" layoutY="720.0" prefHeight="102.0" prefWidth="200.0" />
+            <Button fx:id="mes_tickets" layoutX="577.0" layoutY="154.0" mnemonicParsing="false" onAction="#loadUserTickets" prefHeight="70.0" prefWidth="210.0" text="Mes réservation" visible="false" />
+
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>
