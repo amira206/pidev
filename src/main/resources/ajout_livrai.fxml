@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Ajouter_livrai_Controller">
    <children>
-      <VBox layoutX="70.0" layoutY="89.0" prefHeight="200.0" prefWidth="366.0">
+      <VBox layoutX="70.0" layoutY="89.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
@@ -32,7 +32,10 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="144.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button id="add_button" layoutX="164.0" layoutY="13.0" mnemonicParsing="false" onAction="#ajouter" text="Add" />
+                  <Button id="add_button" layoutX="22.0" layoutY="13.0" mnemonicParsing="false" onAction="#ajouter" text="Add" />
+                  <Button fx:id="afficher_livrai_button" layoutX="155.0" layoutY="13.0" mnemonicParsing="false" onAction="#afficher" text="Afficher" />
+                  <Button fx:id="Update_butt" layoutX="297.0" layoutY="13.0" onAction="#goToUpdateScene" text="Update" />
+
                </children>
             </Pane>
          </children>

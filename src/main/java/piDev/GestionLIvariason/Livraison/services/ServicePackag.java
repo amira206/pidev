@@ -18,21 +18,20 @@ public class ServicePackag implements IService<packag> {
     @Override
     public void ajouter(packag p) {
         try {
-            String req = "INSERT INTO `packag`(" +
-                    " `weight_packag`," +
-                    " `description_packag`) " +
-                    "VALUES (?,?)"; // Use prepared statement placeholders
+            String req = "INSERT INTO `packag` (`weight_packag`, `description_packag`, `id_livrai`) VALUES (?,?,?)";
 
             PreparedStatement pstm = cnx.prepareStatement(req);
             pstm.setInt(1, p.getWeight_packag());
             pstm.setString(2, p.getDescription_packag());
+            pstm.setInt(3, p.getId_livrai());
 
             pstm.executeUpdate();
             pstm.close();
 
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace(); // Print the full stack trace for debugging
+            System.out.println("Package inserted successfully!");
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

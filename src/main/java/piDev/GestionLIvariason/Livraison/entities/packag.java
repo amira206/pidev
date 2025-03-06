@@ -4,6 +4,7 @@ public class packag {
     int id_packag;
     int weight_packag;
     String description_packag;
+    int id_livrai;
 
     public packag() {
     }
@@ -15,6 +16,12 @@ public class packag {
     public packag(int weight_packag, String description_packag) {
         this.weight_packag = weight_packag;
         this.description_packag = description_packag;
+    }
+    public packag(int weight_packag, String description_packag, int id_livrai) {
+        this.id_packag = id_packag;
+        this.weight_packag = weight_packag;
+        this.description_packag = description_packag;
+        this.id_livrai = id_livrai;
     }
     public int getId_packag() {
         return id_packag;
@@ -33,5 +40,11 @@ public class packag {
     }
     public void setDescription_packag(String description_packag) {
         this.description_packag = description_packag;
+    }
+    public int getId_livrai() {
+        return id_livrai;
+    }
+    public void setId_livrai(int id_livrai) {
+        this.id_livrai = id_livrai;
     }
 }
